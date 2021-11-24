@@ -9,7 +9,6 @@ license=('GPL3')
 depends=('electron')
 makedepends=('git')
 provides=('git-good')
-# source=("$pkgname::git+$url.git")
 source=("$pkgname::git+$url.git"
         git-good-exec
         git-good.desktop)
@@ -22,9 +21,10 @@ prepare() {
 }
 
 build() {
+  electron_version=$(</usr/lib/electron/version)
   cd "$pkgname"
   JOBS=max npm run electron-rebuild
-  JOBS=max npx electron-builder --linux --x64 --dir -c.npmRebuild=false -c.electronDist=/usr/lib/electron -c.electronVersion=\"16.0.1\"
+  JOBS=max npx electron-builder --linux --x64 --dir -c.npmRebuild=false -c.electronDist=/usr/lib/electron -c.electronVersion="$electron_version"
 }
 
 package() {
