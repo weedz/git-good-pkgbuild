@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Git-good
+Comment=Git-good
+Exec=git-good
+Terminal=false
+Type=Application
+Icon=git-good-desktop
+Categories=GNOME;GTK;Development
