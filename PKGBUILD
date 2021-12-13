@@ -27,7 +27,7 @@ pkgver() {
 build() {
   electron_version=$(</usr/lib/electron/version)
   cd "$pkgname"
-  JOBS=max npx electron-builder --linux --x64 --dir -c.npmRebuild=true -c.electronDist=/usr/lib/electron -c.electronVersion="$electron_version"
+  JOBS=max npm exec electron-builder -- --linux --x64 --dir -c.target= -c.npmRebuild=true -c.electronDist=/usr/lib/electron -c.electronVersion="$electron_version"
 }
 
 package() {
