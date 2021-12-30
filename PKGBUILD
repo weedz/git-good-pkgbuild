@@ -1,6 +1,6 @@
 # Maintainer: weedzcokie
 pkgname=git-good
-pkgver=0.1.3
+pkgver=v0.1.1.r64.g6fc487b
 pkgrel=1
 pkgdesc='Git-good'
 arch=('x86_64')
@@ -21,7 +21,8 @@ prepare() {
 }
 
 pkgver() {
-  jq -r .version "$pkgname/package.json"
+  cd "$pkgname"
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {

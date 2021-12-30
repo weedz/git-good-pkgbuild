@@ -1,8 +1,9 @@
 [Desktop Entry]
 Name=Git-good
 Comment=Git-good
-Exec=git-good
+GenericName=Git Client
+Exec=git-good %F
 Terminal=false
 Type=Application
 Icon=git-good
-Categories=GNOME;GTK;Development
+Categories=GTK;Development;RevisionControl;
