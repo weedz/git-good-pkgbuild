@@ -1,5 +1,5 @@
 # git-good-pkgbuild
-PKGBUILD for git-good
+PKGBUILD for [git-good](https://github.com/weedz/git-good)
 
 ## Prerequisite
 
