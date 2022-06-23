@@ -1,6 +1,6 @@
 # Maintainer: weedzcokie
 pkgname=git-good
-pkgver=v0.1.1.r98.g52e0e03
+pkgver=v0.1.1.r117.g86a9a54
 pkgrel=1
 pkgdesc='Git-good'
 arch=('x86_64')
@@ -9,7 +9,7 @@ license=('GPL3')
 depends=('electron')
 makedepends=('git')
 provides=('git-good')
-source=("$pkgname::git+$url.git#branch=side-by-side"
+source=("$pkgname::git+$url.git"
         git-good-exec
         git-good.desktop)
 sha256sums=('SKIP' 'SKIP' 'SKIP')
@@ -26,9 +26,9 @@ pkgver() {
 }
 
 build() {
-  electron_version=$(</usr/lib/electron/version)
+  electron_version=$(electron -v | sed 's/v//')
   cd "$pkgname"
-  JOBS=max npm exec electron-builder -- --linux --x64 --dir -c.target= -c.npmRebuild=true -c.electronDist=/usr/lib/electron -c.electronVersion="$electron_version"
+  JOBS=max npm exec electron-builder -- --linux --x64 --dir -c.target= -c.npmRebuild=true -c.electronVersion="$electron_version"
 }
 
 package() {
