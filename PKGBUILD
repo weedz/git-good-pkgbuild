@@ -1,13 +1,13 @@
 # Maintainer: weedzcokie
 pkgname=git-good
-pkgver=v0.1.4.r0.ge8ae0d8
+pkgver=v0.1.4.r29.g861889c
 pkgrel=1
 pkgdesc='Git-good'
 arch=('x86_64')
 url='https://github.com/weedz/git-good'
 license=('GPL3')
 depends=(
-  'electron'
+  'electron28'
   'openssl'
   'krb5'
 )
@@ -30,7 +30,7 @@ pkgver() {
 }
 
 build() {
-  electron_version=$(electron -v | sed 's/v//')
+  electron_version=$(electron28 -v | sed 's/v//')
   cd "$pkgname"
   JOBS=max pnpm run electron-rebuild
   JOBS=max npm exec electron-builder -- --linux --x64 --dir -c.target= -c.npmRebuild=false -c.electronVersion="$electron_version"
