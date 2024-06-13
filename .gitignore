@@ -2,3 +2,4 @@ git-good/
 pkg/
 src/
 git-good*.pkg.tar.zst
+git-good*.pkg.tar.xz
