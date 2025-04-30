@@ -1,6 +1,6 @@
 # Maintainer: weedzcokie
 pkgname=git-good
-pkgver=v0.1.5.r10.g9793e78
+pkgver=v0.1.5.r13.g08fa6bd
 pkgrel=1
 pkgdesc='Git-good'
 arch=('x86_64')
@@ -30,10 +30,8 @@ pkgver() {
 }
 
 build() {
-  electron_version=$(electron35 -v | sed 's/v//')
   cd "$pkgname"
-  JOBS=max pnpm run electron-rebuild
-  JOBS=max pnpx electron-builder -- --linux --x64 --dir -c.target= -c.npmRebuild=false -c.electronVersion="$electron_version"
+  ./scripts/build-native.sh
 }
 
 package() {
@@ -43,9 +41,15 @@ package() {
 
   cd "$pkgname"
 
-  install -Dm644 -t "$pkgdir/usr/share/git-good" out/linux-unpacked/resources/app.asar
+  install -Dm644 -t "$pkgdir/usr/share/git-good/app" package.json
+  cp -rt "$pkgdir/usr/share/git-good/app" dist
 
-  cp -rt "$pkgdir/usr/share/git-good" out/linux-unpacked/resources/app.asar.unpacked
+  # nodegit
+  install -Dm644 -t "$pkgdir/usr/share/git-good/app/node_modules/nodegit" node_modules/nodegit/package.json
+  install -Dm644 -t "$pkgdir/usr/share/git-good/app/node_modules/nodegit" node_modules/nodegit/LICENSE
+  mkdir -p "$pkgdir/usr/share/git-good/app/node_modules/nodegit"
+  cp -rt "$pkgdir/usr/share/git-good/app/node_modules/nodegit" node_modules/nodegit/lib
+  install -Dm644 -t "$pkgdir/usr/share/git-good/app/node_modules/nodegit/build/Release" node_modules/nodegit/build/Release/nodegit.node
 
   find "$pkgdir" -type d -empty -delete -print
 }
