@@ -1,13 +1,13 @@
 # Maintainer: weedzcokie
 pkgname=git-good
-pkgver=v0.1.5.r13.g08fa6bd
+pkgver=v0.1.5.r16.ge345b34
 pkgrel=1
 pkgdesc='Git-good'
 arch=('x86_64')
 url='https://github.com/weedz/git-good'
 license=('GPL3')
 depends=(
-  'electron35'
+  'electron36'
   'openssl'
   'krb5'
 )
