@@ -1,2 +1,2 @@
 #!/bin/sh
-exec electron35 --ozone-platform-hint=wayland /usr/share/git-good/app "$@"
+exec electron36 --ozone-platform-hint=wayland /usr/share/git-good/app "$@"
